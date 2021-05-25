@@ -10,18 +10,18 @@
 % Content of rules is based on Viren Patel's ELIZA in Prolog (vpatel@aisun1.ai.uga.edu)
 
 rules(1, 0,[perdon|_],[
-		[por favor,no,te,disculpes,.],
+		[por,favor,no,te,disculpes,.],
 		[pedir,perdon,no,es,necesario,.],
-		[qué,sentimientos,tienes,tú,cuando,te disculpas,?],
-		['Le',he,dicho,a, usted,que,las, disulpas,no,son,obligatorias,.]]).
+		[que,sentimientos,tienes,tu,cuando,te,disculpas,?],
+		[le,'he',dicho,a,usted,que,las,disulpas,no,son,necesarias,.]]).
 
-rules(2, 5,[you,remember|Y],[
-		[do,you,often,think,of,Y,?],
-		[does,thinking,of,Y,bring,anything,else,to,mind,?],
-		[what,else,do,you,remember,?],
-		[why,do,you,remember,Y,just,now,?],
-		[what,in,the,present,situation,reminds,you,of,Y,?],
-		[what,is,the,connection,between,me,and,Y,?]]).
+rules(2, 5,[tu,recuerdas|Y],[
+		[piensas,a,menudo,en,Y,?],
+		[crees, que,Y,te,viene,algo,en,la,mente,?],
+		[que,mas,recuerdas,de,Y,?],
+		[por,que,te,acuerdas,de,Y,justo,ahora,?],
+		[que,te,recuerda,a,Y,en,esta,situacion,?],
+		[cual,es,la,conexion,entre,Y,y,yo,?]]).
 rules(3, 5,[do,i,remember|Y],[
 		[did,you,think,'I',would,forget,Y,?],
 		[why,do,you,think,i,should,recall,Y,now,?],

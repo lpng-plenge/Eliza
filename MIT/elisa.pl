@@ -2,7 +2,7 @@
 % Martin Mares <mmrmartin@gmail.com>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%   Test methods   %%%%%%%%%%
+%%%%%%%%%%Metodos De Prueba%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 test:-
 	out("[toLowerCase] "),
@@ -29,10 +29,10 @@ test:-
 %%%%%%%%%% Out/in interface %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% out(+Text):- prints output to some output stream
+% out(+Text):- imprime la salida del flujo out
 out(Text):-write(Text).
 
-% in(+Text):- reads question from input stream
+% in(+Text):- lee la pregunta de la entrada del usuario
 in(Text):-
 	nl,
 	write("> "),
@@ -46,10 +46,10 @@ readLine2('\n',[]):-!.
 readLine2(LChar,[LChar|T]):-readLine(T).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%% Basic utilities  %%%%%%%%%%
+%%%%%%%%% Utilidades Basicas %%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% constant predicates
+% contantes predicados
 charType('!', punctuation).
 charType('?', punctuation).
 charType('.', punctuation).
@@ -58,7 +58,7 @@ charType('\'', punctuation).
 charType(' ', whitespace).
 charType('\t', whitespace).
 
-% toLowerCase(+Char, -LChar):- lower case char (using ASCI codes)
+% toLowerCase(+Char, -LChar):- minusculas char (using ASCI codes)
 toLowerCase(Char, LChar):-
 	char_code(Char, Code),
 	Code >= "A",
@@ -67,7 +67,7 @@ toLowerCase(Char, LChar):-
 	char_code(LChar, NewCode), !.
 toLowerCase(Char, Char).
 
-% toUpperCase(+Char, -UChar):- upper case char (using ASCI codes)
+% toUpperCase(+Char, -UChar):- mayusculas char (using ASCI codes)
 toUpperCase(Char, UChar):-
 	char_code(Char, Code),
 	Code >= "a",
@@ -76,7 +76,7 @@ toUpperCase(Char, UChar):-
 	char_code(UChar, NewCode), !.
 toUpperCase(Char, Char).
 
-% deleteChars(+Line, -Type, -Res):- delete specific charType from line
+% deleteChars(+Line, -Type, -Res):- eliminar un especifico charType de la linea
 deleteChars([Char|Rest],Type,Out):-
 	charType(Char, Type),
 	deleteChars(Rest,Type,Out),!.
@@ -84,14 +84,14 @@ deleteChars([Char|Rest],Type,[Char|Out]):-
 	deleteChars(Rest,Type,Out),!.
 deleteChars([],_,[]).
 
-% toWords(+Line, -Words):- transfer output of readLine to list of words
+% toWords(+Line, -Words):- transferir la salida de readLine a la lista de words
 toWords([],[]):-!.
 toWords(Line, [Word|ResWords]):-
 	readWord(Line, Word, ResLine),
 	toWords(ResLine, ResWords).
 
-% readWord(+Line, -Word, -ResLine) :- reads one word from line
-% 	(the rest of line is returned in ResLine
+% readWord(+Line, -Word, -ResLine) :- le una palabra de line
+% 	(el resto de las lineas es retornado en ResLine
 readWord([], '', []).
 readWord([Char|Res], '', Res) :- charType(Char, whitespace),!.
 readWord([Char|ResLine], Word, Res) :- 
@@ -99,27 +99,27 @@ readWord([Char|ResLine], Word, Res) :-
 	atom_concat(Char, ResWord, Word).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%  Elisa function  %%%%%%%%%%
+%%%%%%%%%%  Funcion Elisa  %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 :- dynamic resID/2.
 resID(_,0).
 
-% init:- inits the environment for simplification rules
+% init:- inits el medio para las reglas de simplificacion
 init:-
 	consult("simplification.rules"),
 	consult("reply.rules").	
 
-% simplify(+In,-Out):- removes unnecessary characters eg. "," and "." 
-% 	and simplify words
+% simplify(+In,-Out):- elimina los caracteres innecesarios, p.ej. "," and "." 
+% 	y simplifica las palabras
 simplify(In, Out):-
 	deleteChars(In, punctuation, Out1),
 	toWords(Out1,Out2),
 	findSynonyms(Out2,Out3),
 	Out = Out3.
 
-% findSynonyms(+Words, -Synonyms) :- finds synonyms using
-% 	simplification rules (loaded by init function)
+% findSynonyms(+Words, -Synonyms) :- encuentras sinonimos usando
+% 	reglas de simplificacion (loaded by init function)
 findSynonyms(Words, Syn) :-
 	sr(Words, Syn, RestWords, ResOutput),!,
 	findSynonyms(RestWords, ResOutput).
@@ -127,18 +127,18 @@ findSynonyms([Word| ResWords], [Word| ResSyn]):-
 	findSynonyms(ResWords, ResSyn),!.
 findSynonyms([], []).
 
-% findReply(+Words, -Reply) :- finds reply with highest rank
-% 	(loaded by init function)
+% findReply(+Words, -Reply) :- encuentra la respuesta con el rango mas alto
+% 	(cargado por la funcion init)
 findReply(Words, Reply) :-
 	findReply2(Words, -2, 0, [], ID, Reply),
 	ID \= 0,
 	updateResID(ID).
 
-% findReply2(+Words, +ActScore, +ActRuleID, +ActRes, -RuleID, -Res):- finds reply using two
-%	accumulators
+% findReply2(+Words, +ActScore, +ActRuleID, +ActRes, -RuleID, -Res):- encuentra las respuesta usando
+%	acumuladores
 findReply2([H|T], ActScore, _, _, ID, Res):-
 	findall(Score,rules(_, Score,[H|T],_),Rules),
-	Rules \= [], % bagof doesn't work as I except
+	Rules \= [], % bagof no funciona como me esperabas
 	max_list(Rules,NewScore),
 	ActScore < NewScore,
 	rules(NewID, NewScore,[H|T],Replyes),
@@ -149,7 +149,7 @@ findReply2([_|T], ActScore, ActID, ActRes, ID, Res):-
 	findReply2(T, ActScore, ActID, ActRes, ID, Res).
 findReply2([], _, ID, Res, ID, Res).
 
-% updateResID(+ID):- moves to next reply for rule
+% updateResID(+ID):- pasa a la siguiente respuesta para la regla
 updateResID(ID):-
 	resID(ID,RID),
 	once(rules(ID,_,_,Replyes)),
@@ -164,24 +164,24 @@ updateResID(ID):-
 	NRID is (RID + 1) mod Len,
 	asserta(resID(ID,NRID):-!).
 
-% writeWords(+Words) - uppers first letter and writes words to output
+% writeWords(+Words) - sube la primera letra y escribe las palabras en la salida 
 writeWords([Word|Res]):-
 	string_chars(Word,[Char|RChar]),
 	toUpperCase(Char,UChar),
 	readWord([UChar|RChar],Out,_),
 	out(Out),
 	writeWords2(Res).
-% writes inner list
+% escribe la lista interna
 writeWords2([Word|Res]):-
 	is_list(Word),
 	writeWords2(Word),
 	writeWords2(Res),!.
-% writes punctuation
+% escribe la puntuacion
 writeWords2([Word|Res]):-
 	charType(Word,punctuation),
 	out(Word),
 	writeWords2(Res),!.
-% writes standard char
+% escribe un estandar char
 writeWords2([Word|Res]):-
 	out(" "),
 	out(Word),
@@ -189,14 +189,14 @@ writeWords2([Word|Res]):-
 writeWords2([]).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%  Main function  %%%%%%%%%%%
+%%%%%%%%  Funcion Principal  %%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 elisa:-
-	out("Looking for Elisa....\n"),
+	out("Buscando a Elisa....\n"),
 	init,
-	out("Here she is...\n\n"),
-	out("Hello, I\'m Elisa, how can I help you?"),
+	out("Aqui esta ella...\n\n"),
+	out("Hola, Yo soy Elisa, en que puedo ayudarlo?"),
 	elisa([hi]).
 
 elisa([quit|_]):-!.
