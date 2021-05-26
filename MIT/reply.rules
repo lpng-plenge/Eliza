@@ -79,46 +79,46 @@ rules(12, 50,[computadora|_],[
 		[que,te,preocupan,de,las,computadoras,?],
 		[que,piensas,de,las,maquinas,?]]).
 
-rules(13, 0,[are,you|Y],[
+rules(13, 0,[es,tu|Y],[
 		[usted,cree,que,es,asi,Y,?],
 		[le,gustaria,ser,Y,?],
 		[desearia,si,le,dijera,que,es,Y,?],
 		[que,cree,que,significar,ser,Y,?]]).
-rules(14, 0,[are,i|Y],[
+rules(14, 0,[eres,i|Y],[
 		[por,que,te,interesa,si,soy,Y,o,no,?],
 		[prefiririas,si,no,fuera,Y,?],
 		[tal,vez,yo,soy,Y,en,tus,fantasias,.],
 		[algunas,veces,piensas,que,soy,Y,?]]).
 		
-rules(15, 0,[are|Y],[
+rules(15, 0,[son|Y],[
 		[pensaste,que,tal,vez,no,sean,Y,?],
 		[te,gustaria,si,no,fueran,Y,?],
 		[que,tal,si,no,son,Y,?],
 		[posiblemente,son,Y,.]]).
 
-rules(16, 0,[are|_],[
+rules(16, 0,[eres|_],[
 		[por,que,dices,que,soy,?],
 		['No',entiendo,eso,.]]).
 
-rules(17, 0,[my|Y],[
+rules(17, 0,[mi|Y],[
 		[por,que,estas,preocupado,por,Y,?],
 		[que,pasa,con,tu,Y,?],
 		[estas,preocupado,por,Y,de,otra,personas,?],
 		[en,serio,',',mi,Y,?]]).
 
-rules(18, 2,[was,you|Y],[
+rules(18, 2,[estaba,tu|Y],[
 		[que,tal,si,estuvieras,en,Y,?],
 		[te,has,preguntado,si,estuvieras,en,Y,?],
 		[estabas,en,Y,?],
 		[a,quemte,refieres,si,estuvieras,en,Y,?],
 		[que,te,daria,estar,en,Y,?]]).
 
-rules(19, 2,[you,was|Y],[
+rules(19, 2,[tu,estabas|Y],[
 		[estabas,realmente,?],
 		[por,que,me,dices,que,si,estuvieras,en,Y,justo,ahora,?],
 		[tal,vez,si,ya,sabia,que,era,Y,.]]).
 
-rules(20, 2,[was,i|Y],[
+rules(20, 2,[estaba,yo|Y],[
 		[te,gustarias,creer,que,estaba,Y,?],
 		[por,que,dices,que,si,yo,estube,en,Y,?],
 		[que,es,lo,que,piensas,?],
@@ -143,7 +143,7 @@ rules(23, 1,[tu,sientes|Y],[
 		[disfutas,sintiendo,Y,?],
 		[que,te,recuerda,sentir,Y,?]]).
 
-rules(24, 1,[tu,Y,i,_|_],[
+rules(24, 1,[tu,Y,yo,_|_],[
 		[quizas,en,tus,fantasias,tenemos,Y,entre,nosotros,?],
 		[deseas,Y,conmigo,?],
 		[parece,que,necesitas,tener,Y,conmigo,.],
@@ -158,7 +158,7 @@ rules(25, 1,[tu,M|Y],[
 		[crees,que,tener,Y,resuelva,este,dilema,?]]):-
 		member(M,[quiero,necesito]).
 
-rules(26, 1,[you,M,you,Y|_],[
+rules(26, 1,[tu,M,tu,Y|_],[
 		[realmente,lo,crees,?],
 		[pero,no,estas,seguro,de,Y,?],
 		[de,verdad,dudas,de,Y,?]]):-
@@ -181,9 +181,9 @@ rules(28, 1,[eres|Res],[
 		member(M,[feliz,exaltado,contenta,mejorado]).
 
 rules(29, 1,[eres|Y],[
-		[es,por,que,eres,Y,acudiste,a,mi,?],
-		[cuanto,tiempo,has,estado,Y,?],
-		[crees,que,es,normal,Y,?],
+		[es,por,que,ser,Y,acudiste,a,mi,?],
+		[cuanto,tiempo,has,sido,Y,?],
+		[crees,que,es,normal,ser,Y,?],
 		[disfutas,siendo,Y,?]]).
 
 rules(30, 0,[soy|Y],[
@@ -263,7 +263,7 @@ rules(41, 0,[por,que,no,yo|Y],[
 		[deberias,Y,por,tu,cuenta,?],
         [me,necesitas,para,Y,?]]).
 
-rules(42, 0,[porque,no,puedes|Y],[
+rules(42, 0,[porque,no,puedo|Y],[
 		[crees,que,deberias,poder,Y,?],
 		[quieres,poder,Y,?],
 		[tu,crees,que,esto,te,podria,ayudar,en,Y,?],
@@ -300,5 +300,5 @@ rules(45, 10,[dit|_],[
 rules(46, 100,[quitar|_],[
 		[adios,.,'Mi',secretaria,te,dara,la,factura,.]]).
 
-rules(ID, Score,[im|X],R):-rules(ID, Score,[i|X],R),!.
-rules(ID, Score,[eres|X],R):-rules(ID, Score,[you|X],R),!.
+rules(ID, Score,[yo,soy|X],R):-rules(ID, Score,[yo|X],R),!.
+rules(ID, Score,[eres|X],R):-rules(ID, Score,[tu|X],R),!.
