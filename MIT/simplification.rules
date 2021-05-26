@@ -1,18 +1,19 @@
 % Eliza - Simlification rules
 % Martin Mareš <mmrmartin@gmail.com>
 
-sr([no, hacer|X],[no,hacer|Y],X,Y).
-sr([no, puedo|X],[no, puedo|Y],X,Y).
-sr([no, podria|X],[no, puedo|Y],X,Y).
-sr([no,hare|X],[no|Y],X,Y).
-sr([sonado|X],[sonado|Y],X,Y).
-sr([sueno|X],[sueno|Y],X,Y).
+sr([no, haria|X],[no,haria|Y],X,Y).
+sr([no, puedo|X],[no,puedo|Y],X,Y).
+sr([no, podria|X],[no,puedo|Y],X,Y).
+sr([no,quiero|X],[no,quiero|Y],X,Y).
+sr([sonado|X],[sonaste|Y],X,Y).
+sr([sueno|X],[sonar|Y],X,Y).
 sr([como|X],[que|Y],X,Y).
 sr([cuando|X],[que|Y],X,Y).
 sr([similar|X],[dit|Y],X,Y).
 sr([igual|X],[dit|Y],X,Y).
 sr([definitivamente|X],[si|Y],X,Y).
 sr([tal,vez|X],[quizas|Y],X,Y).
+sr([quizas|X],[quizas|Y],X,Y).
 sr([deutsch|X],[xfremd|Y],X,Y).
 sr([francais|X],[xfremd|Y],X,Y).
 sr([czech|X],[xfremd|Y],X,Y).
@@ -21,29 +22,32 @@ sr([espanol|X],[xfremd|Y],X,Y).
 sr([maquina|X],[computadora|Y],X,Y).
 sr([maquinas|X],[computadora|Y],X,Y).
 sr([computadoras|X],[computadora|Y],X,Y).
-sr([yo,soy|X],[tu,eres|Y],X,Y).
-sr([tu,eres|X],[yo,soy|Y],X,Y).
-sr([soy|X],[eres,son|Y],X,Y).
-sr([tu,tus,su,sus,vuestros,vuestro|X],[mio,mios|Y],X,Y).
-sr([estaban,estuvieron,eran|X],[era,estaba,estuve|Y],X,Y).
-sr([mi|X],[tu,ustedes|Y],X,Y).
-sr([yo,soy|X],[yo,soy|Y],X,Y).
-sr([tu,eres|X],[tu,eres|Y],X,Y).     
-sr([por,mi|X],[por,ti,por,ellos|Y],X,Y).
-sr([por,ti,por,ellos|X],[por,mi|Y],X,Y).
+sr([yo,soy|X],[eres|Y],X,Y).
+sr([eres|X],[soy|Y],X,Y).
+sr([soy|X],[eres|Y],X,Y).
+sr([tu,tus,su,sus,vuestros,vuestro|X],[my|Y],X,Y).
+sr([estaban,estuvieron,eran|X],[was|Y],X,Y).
+sr([mi|X],[tu|Y],X,Y).
+sr([yo,soy|X],[soy|Y],X,Y).
+sr([tu,eres|X],[eres|Y],X,Y).     
+sr([por,mi|X],[yourself|Y],X,Y).
+sr([por,ti,por,ellos|X],[myself|Y],X,Y).
 sr([mama|X],[madre|Y],X,Y).
 sr([papa|X],[padre|Y],X,Y).
 sr([yo|X],[tu|Y],X,Y).
 sr([tu|X],[yo|Y],X,Y).
-sr([mio|X],[tu,tus,su,sus,vuestros|Y],X,Y).
-sr([todos,todo,el,mundo|X],[todos|Y],X,Y).
+sr([mio|X],[your|Y],X,Y).
+sr([todos|X],[todos|Y],X,Y).
 sr([nadie|X],[ninguno|Y],X,Y).
-% new rules
+% nuevas reglas
 sr([me,recuerdas,o|X],[dit|Y],X,Y).
 sr([como|X],[dit|Y],X,Y).
-sr([bye|X],[quit|Y],X,Y).
-sr([goodbye,adios|X],[quit|Y],X,Y).
-sr([hola|X],[hello|Y],X,Y).
+sr([bye|X],[quitar|Y],X,Y).
+sr([adios|X],[quitar|Y],X,Y).
+sr([goodbye|X],[quitar|Y],X,Y).
+sr([hola|X],[saludo|Y],X,Y).
+sr([hi|X],[saludo|Y],X,Y).
+sr([hello|X],[saludo|Y],X,Y).
 sr([ok|X],[si|Y],X,Y).
 sr([okay|X],[si|Y],X,Y).
 sr([yup|X],[si|Y],X,Y).
