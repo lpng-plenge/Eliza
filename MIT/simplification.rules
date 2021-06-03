@@ -1,64 +1,89 @@
-% Eliza - Simlification rules
-% Martin Mareš <mmrmartin@gmail.com>
-
-sr([no, haria|X],[no,haria|Y],X,Y).
-sr([no, puedo|X],[no,puedo|Y],X,Y).
-sr([no, podria|X],[no,puedo|Y],X,Y).
-sr([no,quiero|X],[no,quiero|Y],X,Y).
-
-sr([sonado|X],[sonaste|Y],X,Y).
-sr([sueno|X],[sonar|Y],X,Y).
-
-sr([como|X],[que|Y],X,Y).
-sr([cuando|X],[que|Y],X,Y).
-
-sr([definitivamente|X],[si|Y],X,Y).
-sr([tal,vez|X],[quizas|Y],X,Y).
-sr([quizas|X],[quizas|Y],X,Y).
-
+    %saludos y despidos
+sr([bye|X],[quit|Y],X,Y).
+sr([adios|X],[quit|Y],X,Y).
+sr([goodbye|X],[quit|Y],X,Y).
+sr([hola|X],[hello|Y],X,Y).
+sr([hi|X],[hello|Y],X,Y).
+sr([hello|X],[hello|Y],X,Y).
+    %preguntas
+sr([porque|X],[ya,que|Y],X,Y).
+    %poseciones
+sr([mi|X],[posesiones_1|Y],X,Y).
+sr([mis|X],[posesiones_1|Y],X,Y).
+sr([tus|X],[tu|Y],X,Y).
+    %personas
+sr([nombres|X],[nombre|Y],X,Y).
+    %idiomas
 sr([deutsch|X],[xfremd|Y],X,Y).
 sr([francais|X],[xfremd|Y],X,Y).
 sr([czech|X],[xfremd|Y],X,Y).
 sr([slovak|X],[xfremd|Y],X,Y).
-
+sr([english|X],[xfremd|Y],X,Y).
+    %acciones
+sr([sonado|X],[sone|Y],X,Y).
+sr([suenos|X],[sueno|Y],X,Y).
+    %objetos
 sr([maquina|X],[computadora|Y],X,Y).
 sr([maquinas|X],[computadora|Y],X,Y).
 sr([computadoras|X],[computadora|Y],X,Y).
-
-sr([yo,soy|X],[eres|Y],X,Y).
-sr([eres|X],[yo,soy|Y],X,Y).
-sr([soy|X],[eres|Y],X,Y).
-sr([tu,tus,su,sus,vuestros,vuestro|X],[mi|Y],X,Y).
-sr([tu,tus,su,sus,vuestros,vuestro|X],[me|Y],X,Y).
-sr([estaban,estuvieron,eran,estaba|X],[estaba|Y],X,Y).
-
-sr([yo|X],[tu|Y],X,Y).
-sr([por,mi|X],[tu,mismo|Y],X,Y).
-sr([tu,mismo|X],[yo,mismo|Y],X,Y).
-
+    %ser y estar
+sr([yo|X],[you|Y],X,Y).
+sr([conmigo|X],[you|Y],X,Y).
+sr([yo,soy|X],[youre|Y],X,Y).
+sr([yo,estoy|X],[youre|Y],X,Y).
+sr([estoy|X],[youre|Y],X,Y).      
+    %ser y estar eliza
+sr([tu|X],[im|Y],X,Y).
+sr([tu,eres|X],[im|Y],X,Y).
+sr([tu,estas|X],[im|Y],X,Y).
+sr([estas|X],[im|Y],X,Y).
+    %ser y estar terceras personas
+sr([son|X],[are|Y],X,Y).
+sr([estan|X],[are|Y],X,Y).
+    %preterito de estar,ir,es
+sr([estuve|X],[was|Y],X,Y).
+sr([estaba|X],[was|Y],X,Y).
+sr([estuviste|X],[was|Y],X,Y).
+sr([estabas|X],[was|Y],X,Y).
+sr([estuvo|X],[was|Y],X,Y).
+sr([estuvimos|X],[was|Y],X,Y).
+sr([estabamos|X],[was|Y],X,Y).
+sr([estuvieron|X],[was|Y],X,Y).
+sr([estaban|X],[was|Y],X,Y).
+sr([fui|X],[was|Y],X,Y).
+sr([fuiste|X],[was|Y],X,Y).
+sr([fue|X],[was|Y],X,Y).
+sr([fuimos|X],[was|Y],X,Y).
+sr([fueron|X],[was|Y],X,Y).
+sr([era|X],[was|Y],X,Y).
+sr([eras|X],[was|Y],X,Y).
+sr([era|X],[was|Y],X,Y).
+sr([eramos|X],[was|Y],X,Y).
+sr([eran|X],[was|Y],X,Y).
+    %afirmaciones
+sr([ok|X],[yes|Y],X,Y).
+sr([okay|X],[yes|Y],X,Y).
+sr([yup|X],[yes|Y],X,Y).
+sr([yep|X],[yes|Y],X,Y).
+sr([si|X],[yes|Y],X,Y).
+    %familiares       
 sr([mama|X],[madre|Y],X,Y).
 sr([papa|X],[padre|Y],X,Y).
-sr([yo|X],[tu|Y],X,Y).
-sr([tu|X],[yo|Y],X,Y).
-sr([mio|X],[tus|Y],X,Y).
-sr([todos|X],[todos|Y],X,Y).
-sr([nadie|X],[ninguno|Y],X,Y).
-
-% nuevas reglas
+    %semejanza
 sr([me,recuerdas,a|X],[dit|Y],X,Y).
 sr([como|X],[dit|Y],X,Y).
 sr([similar|X],[dit|Y],X,Y).
+sr([similares|X],[dit|Y],X,Y).
 sr([igual|X],[dit|Y],X,Y).
-
-sr([bye|X],[quitar|Y],X,Y).
-sr([adios|X],[quitar|Y],X,Y).
-sr([goodbye|X],[quitar|Y],X,Y).
-
-sr([hola|X],[saludo|Y],X,Y).
-sr([hi|X],[saludo|Y],X,Y).
-sr([hello|X],[saludo|Y],X,Y).
-
-sr([ok|X],[si|Y],X,Y).
-sr([okay|X],[si|Y],X,Y).
-sr([yup|X],[si|Y],X,Y).
-sr([yep|X],[si|Y],X,Y).
+sr([iguales|X],[dit|Y],X,Y).
+sr([parece|X],[dit|Y],X,Y).
+sr([perecen|X],[dit|Y],X,Y).
+sr([se,perecen|X],[dit|Y],X,Y).
+    %negaciones de poder
+sr([no, puedo|X],[cant|Y],X,Y).
+sr([no, podria|X],[cant|Y],X,Y).
+sr([no, haria|X],[dont|Y],X,Y).
+sr([no,quiero|X],[dont|Y],X,Y).
+sr([no,seria|X],[dont|Y],X,Y).
+sr([no,queria|X],[dont|Y],X,Y).
+sr([no,desearia|X],[dont|Y],X,Y).

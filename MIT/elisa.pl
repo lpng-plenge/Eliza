@@ -199,7 +199,7 @@ elisa:-
 	out("Hola, Yo soy Elisa, en que puedo ayudarlo?"),
 	elisa([hi]).
 
-elisa([quitar|_]):-!.
+elisa([quit|_]):-!.
 elisa(_):-
 	in(Line),
 	simplify(Line, Words),
