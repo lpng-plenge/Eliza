@@ -189,7 +189,7 @@ rules(30, 0,[im|Y],[
 		[quizas,quieres,ser,como,Y,?]]).
 
 rules(31, 0,[te,Y,you|_],[
-		[por,que,crees,que,te,Y,conmigo?],
+		[por,que,crees,que,te,Y,conmigo,?],
 		[te,agrada,pensar,que,yo,te,Y,',',tu,no,?],
 		[por,que,te,hace,pensar,que,te,Y,conmigo],
 		[en,serio,',',yo,te,Y,.],
